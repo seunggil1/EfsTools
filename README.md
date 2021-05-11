@@ -1,8 +1,12 @@
-# EfsTools. Console program for accessing the EFS file system of Qualcomm modems
+### EfsTools. Console program for accessing the EFS file system of Qualcomm modems
 
 사용하기 이전에 Dotnet 5.0 버전을 설치하셔야 됩니다.
 
-https://dotnet.microsoft.com/download/dotnet/5.0
+- https://dotnet.microsoft.com/download/dotnet/5.0
+
+
+#### 참고용 CommandLineOptions
+#### 자세한 내용은 EfsTools/EfsTools/CommandLineOptions 여기 참조.
 
 1. uploadDirectory
 'i', "inComputerPath"
@@ -18,6 +22,7 @@ https://dotnet.microsoft.com/download/dotnet/5.0
 'p', "inputComputerFilePath"
 'o', "outComputerFilePath"
 's', "subscriptionIndex"
+
 
 The program allows you to:
 - Get information about the connected device
