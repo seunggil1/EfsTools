@@ -1,146 +1,154 @@
-# EfsTools. Консольная программа для доступа к файловой системе EFS модемов Qualcomm
+# EfsTools. Console program for accessing the EFS file system of Qualcomm modems
+# https://dotnet.microsoft.com/download/dotnet/5.0
 
-Программа позволяет:
-- Получить информацию о подключенном устройстве
-- Получить информацию о параметрах файловой сиситемы EFS
-- Прочитать файл из устройства в компьютер
-- Записать файл из компьютера в устройство
-- Удалить файл с устройства
-- Переименовать (переместить) файл на устройстве
-- Создать каталог в устройстве
-- Удалить каталог на устройстве
-- Получить список файлов и каталогов 
-- Загрузить каталог из устройства на компьютер
-- Загрузить каталог с компьютера на утройство.
+1. uploadDirectory
+'i', "inComputerPath"
+'o', "outEfsPath"
+'v', "processNvItems"
 
-## Системные требования
+2. extractMbn
+'i', "inputMbnFilePath"
+'p', "outputComputerDirectoryPath"
+'n', "noExtraData"
 
-- Windows 10 1607 и новее, Windows Server 2012 R2 и новее, Mac OS X 10.13 и новее, Red Hat Enterprise Linux 7 и новее, CentOS 7 и новее, Ubuntu 16.04 и новее, Fedora 30 и новее, Debian 9 и новее, OpenSUSE 15 и новее
-- [DotNet 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) и выше.
+3. "setModemConfig"
+'p', "inputComputerFilePath"
+'o', "outComputerFilePath"
+'s', "subscriptionIndex"
 
-## Установка
-Необходимо скачать архив релиза с [сайта разработчика](http://johnbel.github.io/). Затем распаковать его.
+The program allows you to:
+- Get information about the connected device
+- Get information about the parameters of the file system EFS
+- Read file from device to computer
+- Write file from computer to device
+- Delete file from device
+- Rename (move) the file on the device
+- Create directory in device
+- Delete directory on device
+- Get a list of files and directories
+- Download catalog from device to computer
+- Download the catalog from the computer to the device.
 
-## Конфигурация
-Настройки программы хранятся в файле EfsTools.exe.config. Перед началом работы необходимо указать имя COM-порта (параметр ***port***) и его скорость (***baudrate***).
+## System requirements
 
-## Параметры командной строки
+- Windows 8.1, Windows 10 1607 or later, Windows Server 2012 R2 or later, Mac OS X 10.13 or later, Red Hat Enterprise Linux 7 or later, CentOS 7 or later, Ubuntu 16.04 or later, Fedora 30 or later, Debian 9 and newer, OpenSUSE 15 and newer
+- [DotNetCore 3.1] (https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime) and later.
 
-EfsTools.exe <команда> [параметры команды]
+## Installation
+You need to download the release archive from the [developer's site] (http://johnbel.github.io/). Then unzip it.
 
-### Список команд
+## Configuration
+Program settings are stored in the EfsTools.exe.config file. Before starting work, you must specify the name of the COM port (parameter *** port ***) and its speed (*** baudrate ***).
+
+## Command line parameters
+
+EfsTools.exe <command> [command parameters]
+
+### Command List
   
-***targetInfo***
-Получение информации о подключенном устройстве.
+*** targetInfo ***
+Getting information about the connected device.
 
-Пример: EfsTools.exe targetInfo
+Example: EfsTools.exe targetInfo
 
-***efsInfo***
-Получение информации о файловой системе EFS в устройстве
+*** efsInfo ***
+Retrieving EFS Information on a Device
 
-Пример: EfsTools.exe efsInfo
+Example: EfsTools.exe efsInfo
 
-***readFile***
-Чтение файла с утройства на компьютер
+*** readFile ***
+Reading a file from a device to a computer
 
-Пример: EfsTools.exe readFile -i /safe/test/efs -o c:\temp\efs
+Example: EfsTools.exe readFile -i / safe / test / efs -o c: \ temp \ efs
 
-***writeFile***
-Запись файла с компьютера на утройство
+*** writeFile ***
+Writing a file from a computer to the device
 
-Пример: EfsTools.exe writeFile -i c:\temp\efs -o /safe/test/efs
+Example: EfsTools.exe writeFile -i c: \ temp \ efs -o / safe / test / efs
 
-***renameFile***
-Переименовать файл на устройстве
+*** renameFile ***
+Rename file on device
 
-Пример: EfsTools.exe renameFile -p /safe/test/efs -n /safe/test/efs2
-
-
-***deleteFile***
-Удалить файл на устройстве
-
-Пример: EfsTools.exe deleteFile -p /safe/test/efs
-
-***createDirectory***
-Создать каталог на устройстве
-
-Пример: EfsTools.exe createDirectory -p /safe/test/efs
+Example: EfsTools.exe renameFile -p / safe / test / efs -n / safe / test / efs2
 
 
-***deleteDirectory***
-Удалить каталог на устройстве
+*** deleteFile ***
+Delete file on device
 
-Пример: EfsTools.exe deleteDirectory -p /safe/test/efs
+Example: EfsTools.exe deleteFile -p / safe / test / efs
 
+*** createDirectory ***
+Create directory on device
 
-***listDirectory***
-Получить список файлов и каталогов 
-
-Пример: EfsTools.exe listDirectory -p /safe/test/efs -r
-
-***downloadDirectory***
-Загрузить каталог с устройства на компьютер
-
-Пример: EfsTools.exe downloadDirectory -i / -o c:\backup\efs
+Example: EfsTools.exe createDirectory -p / safe / test / efs
 
 
-***uploadDirectory***
-Загрузить каталог c компьютера на устройство
+*** deleteDirectory ***
+Delete directory on device
 
-Пример: EfsTools.exe uploadDirectory -i c:\backup\efs -o /
-
-
-***getModemConfig***
-Сгенерировать конфигурацию модема используя устройство или каталог (параметр -i) с EFS-структурой
-
-Пример: EfsTools.exe getModemConfig -i .\backup -p .\items_backup.json 
-EfsTools.exe getModemConfig -p .\items_phone.json 
+Example: EfsTools.exe deleteDirectory -p / safe / test / efs
 
 
-***setModemConfig***
-Установить конфигурацию модема в устройстве или сгененировать EFS-структуру в каталоге (параметр -o)
+*** listDirectory ***
+Get a list of files and directories
 
-Пример: EfsTools.exe setModemConfig -p .\items.json -o .\efs
-EfsTools.exe setModemConfig -p .\items_for_phone.json
+Example: EfsTools.exe listDirectory -p / safe / test / efs -r
+
+*** downloadDirectory ***
+Download catalog from device to computer
+
+Example: EfsTools.exe downloadDirectory -i / -o c: \ backup \ efs
 
 
-***extractMbn***
-Распаковать содержимое MBN (Modem configuration BiNary) файла в указанную директорию
-Пример: EfsTools.exe extractMbn -i mcfg_sw.mbn -p mcfg
+*** uploadDirectory ***
+Load catalog from computer to device
 
-***getLog***
-Начать захват логов и сообщений модема
+Example: EfsTools.exe uploadDirectory -i c: \ backup \ efs -o /
 
-Пример: EfsTools.exe getLog -l IMS_MESSAGE
 
-***webDavServer***
-Запуск WebDAV сервера
+*** getModemConfig ***
+Generate modem configuration using device or directory (option -i) with EFS structure
 
-Пример: EfsTools.exe webDavServer  -p 8888 -r 1
+Example: EfsTools.exe getModemConfig -i. \ Backup -p. \ Items_backup.json
+EfsTools.exe getModemConfig -p. \ Items_phone.json
+
+
+*** setModemConfig ***
+Set the modem configuration in the device or generate an EFS structure in the directory (-o parameter)
+
+Example: EfsTools.exe setModemConfig -p. \ Items.json -o. \ Efs
+EfsTools.exe setModemConfig -p. \ Items_for_phone.json
+
+
+*** extractMbn ***
+Unpack the contents of the MBN (Modem configuration BiNary) file into the specified directory
+Example: EfsTools.exe extractMbn -i mcfg_sw.mbn -p mcfg
+
+*** getLog ***
+Start capturing modem logs and messages
+Example: EfsTools.exe getLog -l IMS_MESSAGE
   
   
-***help***
-Показать справку о команде
+*** help ***
+Show command help
 
-Пример: EfsTools.exe help createDirectory
+Example: EfsTools.exe help createDirectory
 
-***version***
-Отобразить версию программы
+*** version ***
+Show program version
 
-Пример: EfsTools.exe version
+Example: EfsTools.exe version
 
-## Лицензии
-Данная программное обеспечение распространяется по лицензии [MIT](/License.md)
+## Licenses
+This software is distributed under the [MIT] license (/ License.md)
 
-Программа использует библиотеку [Commandline](https://github.com/commandlineparser/commandline) Copyright (c) 2005 - 2015 Giacomo Stelluti Scala & Contributors
+The program uses the [Commandline] library (https://github.com/commandlineparser/commandline) Copyright (c) 2005 - 2015 Giacomo Stelluti Scala & Contributors
 
-Программа использует библиотеку [NWebDav](https://github.com/ramondeklein/nwebdav) Copyright (c) 2018 Ramon de Klein
+The program uses the library [Newtonsoft.Json] (https://www.newtonsoft.com/json) Copyright (c) 2007 James Newton-King
 
-Программа использует библиотеку [Newtonsoft.Json](https://www.newtonsoft.com/json) Copyright (c) 2007 James Newton-King
+The program uses the library [ELFSharp] (http://elfsharp.hellsgate.pl) Copyright (c) Konrad Kruczyński, iotr Zierhoffer, Łukasz Kucharski, Bastian Eicher, Cameron, Fox, Frederik Carlier, Everett Maus
 
-Программа использует библиотеку [ELFSharp] (http://elfsharp.hellsgate.pl) Copyright (c) Konrad Kruczyński, iotr Zierhoffer, Łukasz Kucharski, Bastian Eicher, Cameron, Fox, Frederik Carlier, Everett Maus
+The protocol for working with Qualcomm modems was read in the [libopenpst] project (https://github.com/openpst/libopenpst) Copyright (c) Gassan Idriss
 
-Протокол работы с модемами Qualcomm был прочитан в проекте [libopenpst](https://github.com/openpst/libopenpst) Copyright (c) Gassan Idriss
-
-## Сайт
-[JohnBel](http://johnbel.github.io/)
+## Website
+[JohnBel] (http://johnbel.github.io/)
